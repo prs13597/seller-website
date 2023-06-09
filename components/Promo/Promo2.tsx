@@ -3,7 +3,7 @@ import '../../app/globals.css'
 import { useState } from 'react';
 import Image from 'next/image'
 
-const Promo2 = () => {
+const Promo2 = ({promoMainHeader="The right tools for your future"}) => {
     const slides = [
         {
           url: '/first.png',
@@ -12,13 +12,19 @@ const Promo2 = () => {
         },
         {
           url: '/second.png',
+          header: "Odyssey OLED G8",
+          summary:  "Avail up to ₹ 18000* instant cart discount"
         },
         {
           url: '/third.png',
+          header: "Unleash your\nschool Spirits",
+          summary: "Get up to 15%* off on Galaxy Book, Tab & Monitors"
         },
     
         {
           url: '/four.png',
+          header: "Galaxy Tab Series",
+          summary: "Avail benefits up to ₹ 22000*"
         }
       ];
     
@@ -40,18 +46,22 @@ const Promo2 = () => {
         setCurrentIndex(slideIndex);
       };
     return (
-        <div className='max-w-[1400px] w-full m-auto py-16 px-4 relative group' style={{height: "450px"}}>
+        <div>
+          {promoMainHeader && <div className='text-4xl subpixel-antialiased font-extrabold text-center'>
+            {promoMainHeader}
+          </div>}
+          <div className='max-w-[1400px] w-full m-auto mt-8 pb-24 px-4 relative group' style={{height: "450px"}}>
           <div
             style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-            className='w-full h-full rounded-2xl bg-center bg-cover duration-500 flex flex-col justify-end'
+            className='w-full h-full rounded-2xl bg-center bg-cover duration-500 flex flex-col justify-center'
           >
-             <div className="text-4xl subpixel-antialiased font-extrabold text-right py-12 pr-24">
-                Promo Header
+             <div className="text-4xl subpixel-antialiased font-extrabold text-right py-8 pr-24">
+                {slides[currentIndex].header}
             </div>
-            <div className="text-2xl subpixel-antialiased text-right pr-24">
-                Promo Summary
+            <div className="text-2xl subpixel-antialiased text-right pr-24 pb-8">
+                {slides[currentIndex].summary}
             </div>
-            <button className="p-12 text-2xl max-h-min max-w-min self-end pr-24">
+            <button className="px-12 py-2 mb-8 text-1xl max-h-min max-w-fit self-end mr-24 text-white bg-black rounded-full">
                 Buy Now
             </button>
           </div>
@@ -107,6 +117,7 @@ const Promo2 = () => {
                 ))}
           </div>
           
+        </div>
         </div>
     );
 }
